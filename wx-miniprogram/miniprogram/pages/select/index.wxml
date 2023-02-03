@@ -1,0 +1,41 @@
+<view class="bg_contain" style='background-image: url({{background}})'>
+  <view class='blur'>
+    <view class="home_page" style="padding: 10px;display: {{isStart?'none':'block'}};">
+
+      <view class="header">
+        <image src="{{avatar}}" mode="center" />
+        <text class="title">
+          {{home.title}}</text>
+        <text class="text">
+          {{home.question}}</text>
+      </view>
+
+      <block wx:for="{{home.choices}}" wx:for-item="item" wx:key="index">
+        <view style="padding: 10px;">
+          <button bindtap='handleClick' data-answer="{{item}}" data-question="{{home.question}}" data-nextindex="0">{{item}}</button>
+        </view>
+      </block>
+
+      <view class="avatar_card">
+        <text class="name">名字</text>
+        <text class="talk">开场白：点播你的最爱，唱响一首心跳的旋律！</text>
+      </view>
+    </view>
+
+    <view class="pages" style="padding: 10px;display: {{!isStart?'none':'block'}};">
+      <view class="header">
+        <image src="{{avatar}}" mode="center" />
+        <text class="title">
+          {{}}</text>
+        <text class="text">
+          {{page.question}}</text>
+      </view>
+
+      <block wx:for="{{page.choices}}" wx:for-item="item" wx:key="index">
+        <view style="padding: 10px;">
+          <button bindtap='handleClick' data-answer="{{item}}" data-question="{{page.question}}" data-nextindex="{{page.index+1}}" data-result="{{result[index]}}">{{item}}</button>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
