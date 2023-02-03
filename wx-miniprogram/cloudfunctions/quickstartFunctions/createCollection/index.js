@@ -1,32 +1,34 @@
 const cloud = require('wx-server-sdk');
 
 cloud.init({
-  env: cloud.DYNAMIC_CURRENT_ENV
+  env: cloud.DYNAMIC_CURRENT_ENV,
+  traceUser:true
 });
-const wxContext = cloud.getWXContext()
-const db = cloud.database();
+
 
 // 创建集合云函数入口函数
 exports.main = async (event, context) => {
-  let collection=event.collection
+  const wxContext = cloud.getWXContext()
+  const db = cloud.database();
+  let collection = event.collection
   try {
     // 创建集合
     await db.createCollection(collection);
-  }catch{
+  } catch {
 
   }
 
-  try{
+  try {
     await db.collection(collection).add({
       // data 字段表示需新增的 JSON 数据
       data: {
-        data:event.data,
+        data: event.data,
         openid: wxContext.OPENID,
         appid: wxContext.APPID,
         unionid: wxContext.UNIONID,
       }
     });
-    
+
     return {
       success: true,
       // data:{
