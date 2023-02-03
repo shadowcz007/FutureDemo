@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+wx-miniprogram/.git
+wx-miniprogram/cloudfunctions/quickstartFunctions/node_modules/

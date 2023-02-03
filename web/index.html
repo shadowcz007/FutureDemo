@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUTURE#DEMO</title>
+    <!-- <link type='text/css' rel='stylesheet' href='stylesheet.css'/> -->
+    <!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open Sans"/> -->
+    <style>
+        body {
+            /* font-family: Open Sans; */
+            margin: 0;
+            padding: 0;
+            background-color: #1E90FF;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #title {
+            /* text-decoration: underline; */
+        }
+
+        #quiz {
+            text-indent: 10px;
+            display: none;
+        }
+
+        .button {
+            border: 4px solid;
+            border-radius: 5px;
+            width: 88px;
+            height: 36px;
+            text-align: center;
+            padding-left: 5px;
+            padding-right: 5px;
+            position: relative;
+            float: right;
+            background-color: #DCDCDC;
+            color: black;
+            margin: 0 2px 0 2px;
+            line-height: 36px;
+        }
+
+        .button.active {
+            background-color: #F8F8FF;
+            color: #525252;
+        }
+
+        button {
+            position: relative;
+            float: right;
+        }
+
+        .button a {
+            text-decoration: none;
+            color: black;
+        }
+
+        #container {
+            width: 100%;
+            /* margin: auto; */
+            /* padding: 0 25px 40px 10px; */
+
+            /* border: 4px solid #B0E0E6;
+            border-radius: 5px; */
+            color: #FFFFFF;
+            font-weight: bold;
+            /* box-shadow: 5px 5px 5px #888;*/
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin: 18px 0;
+            padding: 0px 36px;
+        }
+
+        #prev {
+            display: none;
+        }
+
+        #start {
+            display: none;
+            width: 90px;
+        }
+
+        #home-page li {
+            background-color: #2196f3;
+            padding: 0;
+            margin: 12px;
+            height: 44px;
+            line-height: 44px;
+            text-align: center;
+        }
+
+        #home-page label {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='container'>
+        <div id='title'>
+            <h1>-</h1>
+        </div>
+        <br />
+        <div id='quiz'></div>
+        <div class='button' id='next'><a href='#'>下一步</a></div>
+        <div class='button' id='prev'><a href='#'>前一步</a></div>
+        <div class='button' id='start'> <a href='#'>开始</a></div>
+        <!-- <button class='' id='next'>Next</a></button>
+    		<button class='' id='prev'>Prev</a></button>
+    		<button class='' id='start'> Start Over</a></button> -->
+    </div>
+
+    <script>
+        (function () {
+            let homePage = {
+                title: '测一测,未来的你从事什么工作??',
+                question: '目前职业',
+                choices: ['设计师', '程序员', '创业者', '直接开始']
+            };
+            let { questions, title } = {
+                questions: [
+                    { question: "当你看到一个有趣的活动时，你会选择：", choices: ["放弃机会观察一下", "抓住机会去尝试", "谨慎衡量所有可能性", "直接忽略"] },
+                    { question: "你更喜欢：", choices: ["批判性思维", "系统性思维", "想象力", "行动导向"] },
+                    { question: "你更乐意：", choices: ["面对新情况", "熟悉的状况", "无论哪个都行", "不做任何选择"] },
+                    { question: "你感觉你做的比较好的是：", choices: ["批判", "推理", "创造", "完美"] },
+                    { question: "你更喜欢安静的心情：", choices: ["是", "否", "有时", "不确定"] },
+                    { question: "你更喜欢自己做决定：", choices: ["是", "否", "有时", "不确定"] }],
+                title: '测一测你的未来职业'
+            };
+
+            let answersData = [
+                {
+                    title: '元宇宙设计师',
+                    answer: 'BAADAA',
+                    description: '表明你更倾向于抓住机会去尝试、批判性思考、适应新情况、批判、愿意安静、和乐于做出决定。'
+                },
+                {
+                    title: '人工智能Youtuber',
+                    answer: 'BBBADC',
+                    description: '表明你更倾向于抓住机会去尝试、系统性思考、适应新情况、推理、愿意安静、和乐于做出决定。'
+                },
+                {
+                    title: '程序员Youtuber',
+                    answer: 'CBCDBD',
+                    description: '表明你更倾向于谨慎衡量所有可能性、系统性思考、适应新情况、创造、愿意安静、和乐于做出决定。'
+                },
+                {
+                    title: 'NFT艺术大家',
+                    answer: 'DCAACA',
+                    description: '表明你更倾向于直接忽略、想象力、适应新情况、批判、愿意安静、和乐于做出决定。'
+                },
+                {
+                    title: '设计糕点师',
+                    answer: 'ADABCD',
+                    description: '表明你更倾向于放弃机会观察一下、宜人、被动适应新情况、推理、不愿意安静、和乐于做出决定。'
+                },
+                {
+                    title: 'NFT医生',
+                    answer: 'ADCBBA',
+                    description: '表示你更倾向于放弃机会观察一下、宜人、被动适应新情况、推理、愿意安静、和不乐于做出决定。'
+                },
+                {
+                    title: '设计医生',
+                    answer: 'CACDDA',
+                    description: '表示你更倾向于谨慎衡量所有可能性、宜人、被动适应新情况、创造、愿意安静、和乐于做出决定。'
+                },
+                {
+                    title: '程序化模特',
+                    answer: 'ACBBCC',
+                    description: '表示你更倾向于抓住机会去尝试、外向、被动适应新情况、创造、愿意安静、和乐于做出决定。'
+                },
+                {
+                    title: '人工智能艺术家',
+                    answer: 'ABDCBD',
+                    description: '表示你更倾向于抓住机会去尝试、开放、被动适应新情况、创造、愿意安静、和乐于做出决定。'
+                },
+                {
+                    title: 'Youtube糕点师',
+                    answer: 'BDCDAA',
+                    description: '表示你更倾向于抓住机会去尝试、尽责、被动适应新情况、完美、愿意安静、和乐于做出决定。'
+                },
+                {
+                    title: 'NFT宗师',
+                    answer: 'AABACB',
+                    description: '表示你更倾向于放弃机会观察一下、开放、被动适应新情况、批判、愿意安静、和乐于做出决定。'
+                }
+            ];
+            let answersJson = {};
+            for (const an of answersData) {
+                answersJson[an.answer] = an;
+            }
+
+            document.body.querySelector('#title h1').innerText = title;
+
+            var user;
+            var questionCounter = 0; //Tracks question number
+            var selections = []; //Array containing user choices
+            var quiz = document.body.querySelector('#quiz'); //Quiz div object
+
+            // display home page
+            displayHomePage(homePage);
+
+            // Display initial question
+            displayNext();
+
+            function isAnimated() {
+                return quiz.style.animation ? true : false;
+            }
+
+            // Click handler for the 'next' button
+            document.body.querySelector('#next').addEventListener('click', e => {
+                e.preventDefault();
+
+                // Suspend click listener during fade animation
+                if (isAnimated()) {
+                    return false;
+                }
+                choose();
+                console.log(selections[questionCounter] == undefined, selections[questionCounter])
+                // If no user selection, progress is stopped
+                if (selections[questionCounter] == undefined) {
+                    alert('请选择哦!');
+                    // return
+                } else {
+                    questionCounter++;
+                    displayNext();
+                }
+            })
+
+
+            // Click handler for the 'prev' button
+            document.body.querySelector('#prev').addEventListener('click', e => {
+
+                e.preventDefault();
+
+                if (isAnimated()) {
+                    return false;
+                }
+                choose();
+                questionCounter--;
+                displayNext();
+            });
+
+            // Click handler for the 'Start Over' button
+            document.body.querySelector('#start').addEventListener('click', e => {
+
+                e.preventDefault();
+
+                if (isAnimated()) {
+                    return false;
+                }
+                questionCounter = 0;
+                selections = [];
+                displayNext();
+
+                document.getElementById('start').style.display = 'none';
+            });
+
+            // Animates buttons on hover
+            var buttons = document.querySelectorAll('.button');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].addEventListener('mouseenter', function () {
+                    this.classList.add('active');
+                });
+                buttons[i].addEventListener('mouseleave', function () {
+                    this.classList.remove('active');
+                });
+            }
+
+            // Creates and returns the div that contains the questions and 
+            // the answer selections
+            function createQuestionElement(index) {
+                var qElement = document.createElement('div');
+                qElement.id = 'question';
+
+                var header = document.createElement('h2');
+                header.innerHTML = '问题 ' + (index + 1) + ':';
+
+                qElement.appendChild(header);
+
+                var question = document.createElement('p');
+                question.innerHTML = questions[index].question;
+                qElement.appendChild(question);
+
+                var radioButtons = createRadios(index, questions[index]);
+                qElement.appendChild(radioButtons);
+
+                return qElement;
+            }
+
+            // Creates a list of the answer choices as radio inputs
+            function createRadios(index, data) {
+                var radioList = document.createElement('ul');
+                var item;
+                var input;
+                let answerList = 'ABCDEF'.split('');
+                for (var i = 0; i < data.choices.length; i++) {
+                    item = document.createElement('li');
+                    input = `<label for="q_${index}_${i}">${`<input id="q_${index}_${i}" type="radio" name="answer" value='["${answerList[i]}","${data.question}","${data.choices[i]}"]' />`} ${data.choices[i]} </label>`;
+                    item.innerHTML = input;
+                    radioList.appendChild(item);
+                }
+
+                return radioList;
+            }
+
+            // Reads the user selection and pushes the value to an array
+            function choose() {
+                var answers = document.getElementsByName('answer');
+                for (var i = 0; i < answers.length; i++) {
+                    if (answers[i].checked) {
+                        selections[questionCounter] = JSON.parse(answers[i].value);
+                    }
+                }
+                postData([user, ...selections])
+                console.log(selections)
+            }
+
+            // homepage
+            function displayHomePage(json) {
+                let div = document.createElement('div');
+                div.id = 'home-page'
+                div.style = `position: fixed;
+                    z-index: 99999999;
+                    width: calc(100% - 72px);
+                    height: 100vh;
+                    top: 0px;
+                    left: 0px;
+                    background: #eee;
+                    padding: 36px;`
+                div.innerHTML = `<h1>${json.title}</h1>
+                    <h2>${json.question}</h2>
+                    <h3>-</h3>
+                    <ul>
+                        ${createRadios(-1, json).innerHTML}
+                    </ul>
+                    <h3>名言名句：</h3>
+                    <p>
+                        人生就像一场旅行，一切都是未知的。——凡·哈斯
+                    </p>`;
+                Array.from(div.querySelectorAll('input'), inp => {
+                    inp.style.display = 'none';
+                    inp.addEventListener('change', e => {
+                        e.preventDefault();
+                        user = JSON.parse(e.target.value);
+                        div.style.display = 'none';
+                        postData([user])
+                    })
+                })
+                document.body.appendChild(div);
+            }
+
+            // Displays next requested element
+            function displayNext() {
+                if (questionCounter < questions.length) {
+                    var nextQuestion = createQuestionElement(questionCounter);
+                    quiz.innerHTML = '';
+                    quiz.appendChild(nextQuestion);
+                    quiz.style.display = "block";
+                    if (selections[questionCounter] != undefined) {
+                        var answers = document.getElementsByName('answer');
+                        for (var i = 0; i < answers.length; i++) {
+                            if (answers[i].value === selections[questionCounter]) {
+                                answers[i].checked = true;
+                            }
+                        }
+                    }
+                    // Controls display of 'prev' button
+                    if (questionCounter === 1) {
+                        document.getElementById('prev').style.display = "block";
+                    } else if (questionCounter === 0) {
+                        document.getElementById('prev').style.display = "none";
+                        document.getElementById('next').style.display = "block";
+                    }
+                } else {
+                    // 结束页面
+                    var scoreElem = displayScore();
+                    quiz.innerHTML = '';
+                    quiz.appendChild(scoreElem);
+                    quiz.style.display = "block";
+                    document.getElementById('next').style.display = "none";
+                    document.getElementById('prev').style.display = "none";
+                    document.getElementById('start').style.display = "none";
+                }
+            }
+
+            // match answer
+            function matchAnwser(targetStr = '', arr = []) {
+
+                let na = [...arr].sort((a, b) => {
+                    let aMatchNum = 0;
+                    let bMatchNum = 0;
+                    for (let i = 0; i < a.length; i++) {
+                        if (a[i] === targetStr[i]) {
+                            aMatchNum += i < 3 ? 2 : 1;
+                        }
+                        if (b[i] === targetStr[i]) {
+                            bMatchNum += i < 3 ? 2 : 1;
+                        }
+                    }
+                    console.log(`${a}:${aMatchNum}   ${b}:${bMatchNum}`);
+                    return bMatchNum - aMatchNum;
+                });
+                // console.log(arr);
+                return na
+            }
+
+            // Computes score and returns a paragraph element to be displayed
+            function displayScore() {
+
+
+                let res = matchAnwser(Array.from(selections, s => s[1]).join(''), Object.keys(answersJson))
+                console.log(selections, res)
+
+                let result1 = answersJson[res[0]]
+
+                let d = document.createElement('div');
+                d.innerHTML = `<div class="profile-card"
+        style="width:400px;background:#000000;margin:50px auto;border-radius:2px;overflow:hidden;box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);position:relative;">
+        
+        <h2 style="color: #ffffff;text-align:center;font-family: 'Roboto', sans-serif;font-weight:300;">我的职业: ${result1.title}</h2>
+        <img 
+        title='${result1.imgId}'
+        src="https://img2.baidu.com/it/u=3159148334,3721295359&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500"
+            style="width:100%;border-top-left-radius:2px;border-top-right-radius:2px;z-index:1;position:relative;" />
+        <p style="font-family: 'Roboto', sans-serif;font-weight:300;font-size:14px;line-height:1.5;padding:0 20px;">${result1.description}</p>
+        
+        <div class="btn-block" style="padding:10px;text-align:center;">
+            <button type="button"
+                data-value='喜欢'
+                style="border:none;background:#4285f4;color:#fff;padding:10px 30px;font-family: 'Roboto', sans-serif;font-weight:300;font-size:14px;border-radius:2px;margin:5px 24px;cursor:pointer;">喜欢</button>
+            <button type="button"
+            data-value='不喜欢'
+                style="border:none;background:#4285f4;color:#fff;padding:10px 30px;font-family: 'Roboto', sans-serif;font-weight:300;font-size:14px;border-radius:2px;margin:5px 0;cursor:pointer;">不喜欢</button>
+        </div>
+    </div>`;
+
+                Array.from(d.querySelectorAll('button'), btn => {
+                    btn.addEventListener('click', e => {
+                        e.preventDefault();
+                        postData([user, ...selections, [result1.title, d.querySelector('img').title, btn.getAttribute('data-value')]])
+                    })
+                })
+                return d;
+            }
+
+
+            function postData(arr) {
+                console.log(arr)
+            }
+
+        })();
+    </script>
+
+</body>
+
+</html>
