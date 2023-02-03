@@ -62,7 +62,11 @@ Page({
     // 初始化
     console.log(wx.getStorageSync('select'))
     let {home,pages,answersData,background,avatar} = wx.getStorageSync('select')
-    
+
+    // 
+    let quotations=home.quotations;
+    home.quotation={};
+    if(quotations) home.quotation=quotations[Math.floor(Math.random() *  quotations.length)]
     // let home = {
     //   title: '未来的你从事什么工作??',
     //   question: '目前职业',
@@ -184,7 +188,8 @@ Page({
           background:res.fileList[0].tempFileURL,
           avatar:res.fileList[1].tempFileURL
         });
-        wx.hideLoading()
+        setTimeout(()=>wx.hideLoading(),1000)
+        
       },
       fail: console.error
     })
@@ -227,11 +232,11 @@ Page({
       // 出答案
       let selections=Array.from(this.data.selections,s=>s.result?s.result:null).filter(r=>r).join('')
       let res = this.matchAnwser(selections, Object.keys(this.data.answersJson));
-      let result3 = [];
-      for (const r of res.slice(0, 3)) {
-        result3.push(this.data.answersJson[r])
+      let result4 = [];
+      for (const r of res.slice(0, 4)) {
+        result4.push(this.data.answersJson[r])
       }
-      wx.setStorageSync('result', result3.filter(f => f));
+      wx.setStorageSync('result', result4.filter(f => f));
       wx.setStorageSync('selections', this.data.selections)
       this.jumpPage()
     }

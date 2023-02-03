@@ -1,9 +1,9 @@
 /**index.wxss**/
-
-page {
-  padding-top: 54rpx;
+ 
+.container {
+  padding-top: 98px;
   background-color: #f6f6f6;
-  padding-bottom: 60rpx;
+  padding-bottom: 44rpx;
 }
 
 .title {

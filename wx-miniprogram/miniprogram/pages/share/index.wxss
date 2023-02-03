@@ -3,12 +3,14 @@
   /* background-image: url('./image_demo.jpg'); */
   height: 100vh;
   background-size: cover;
+  background-color: black;
 }
 
 .blur {
-  background: rgb(0 0 0 / 45%);
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,.45);
   height: 100vh;
+  
 }
 
 .header {
@@ -50,10 +52,13 @@
 .profile-card image {
   width: 99px;
   height: 99px;
+  margin-top: 24px;
+  border-radius: 16px;
+
 }
 
 .profile-card button {
-  background: #4285f4;
+  background: #046e7b;
   color: #fff;
   padding: 10px 30px;
   font-family: 'Roboto', sans-serif;

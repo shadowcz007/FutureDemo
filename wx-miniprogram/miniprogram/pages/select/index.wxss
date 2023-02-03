@@ -2,18 +2,22 @@
   /* background-image: url('./image_demo.jpg'); */
   height: 100vh;
   background-size: cover;
+  background-color: black;
 }
 
 .blur {
-  background: rgb(0 0 0 / 45%);
   backdrop-filter: blur(10px);
+  background: rgba(0,0,0,.45);
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .header {
   display: flex;
   flex-direction: column;
-  margin-top: 44px;
+  margin-top: 12px;
   align-items: center;
   justify-content: center
 }
@@ -25,6 +29,7 @@
   position: relative;
   animation: rotatearound 98s linear infinite;
   box-shadow: 0 0 4px 0 rgba(255, 255, 255, 0.5) linear-gradient(to bottom, #f00, #fcc, #00f);
+  background-color: black;
 }
 
 .header .title {
@@ -35,10 +40,11 @@
 }
 
 .header .text {
+  color: #fff;
   font-size: 16px;
-  font-weight: bold;
-  color: #ffffff;
+  font-weight: 700;
   line-height: 24px;
+  margin-top: 32px;
 }
 
 
@@ -58,19 +64,22 @@
 
 .name {
   font-size: 13px;
-  color: #efefef;
+  color: #c7c7c7;
   font-weight: 800;
 }
 
 .talk {
   font-size: 11px;
-  color: #fff;
+  color: #c7c7c7;
   font-style: italic;
 }
 
 button {
   background-color: #8eca8e;
   color: #3a2c2c;
-  border-radius: 55px!important;
-  text-align: left;
+  border-radius: 55px !important;
+  text-align: center;
+  padding: 12px;
+  margin: 2px 0;
+  min-width: 80%;
 }

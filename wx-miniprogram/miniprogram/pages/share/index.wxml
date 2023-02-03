@@ -1,10 +1,11 @@
 <view class="bg_contain" style='background-image: url({{background}})'>
   <view class='blur'>
   <view class="header">
-    <button bindtap="goHome">返回首页</button>
+    <button bindtap="goHome" style="color: white;margin-left: 0;width: 98px;margin-top: 32px;">返回首页</button>
   </view>
   <view class="profile-card">
-    <text>我的职业: {{result.title}}</text>
+    <text style="font-weight: 300;padding: 8px;">适合你的未来职业</text>
+    <text style="font-size: 24px;padding: 4px;">{{result.title}}</text>
     <image mode="aspectFill" src="{{avatar}}" />
     <text>{{result.description}}</text>
     <view class="btn-block">

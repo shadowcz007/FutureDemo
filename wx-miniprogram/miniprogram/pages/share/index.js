@@ -35,15 +35,24 @@ Page({
   },
   next() {
     try {
-      let res = this.data.data[this.data.index++];
+      let index=this.data.index;
+      index++;
+      let res = this.data.data[index];
       if (res) {
         this.setData({
-          result: res
+          result: res,index
         })
+      }else{
+        this.setData({
+          index:0,
+          result: this.data.data[0]})
       }
     } catch (error) {
-      this.goHome()
+      this.setData({
+        index:0,
+        result: this.data.data[0]})
     }
+    // console.log(this.data)
   },
   like(param) {
     const {
@@ -59,9 +68,9 @@ Page({
     this.next();
   },
   goHome() {
-    wx.switchTab({
-      url: '/pages/index/index'
-    })
+    wx.navigateTo({
+      url: `/pages/index/index`,
+    });
   },
   postData(data) {
     wx.cloud.callFunction({
