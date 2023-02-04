@@ -1,5 +1,6 @@
 <!--index.wxml-->
 <view class="container">
+<image class="logo" src="{{appLogo}}" mode="aspectFit" bindtap="jumpVideoChannel"></image>
   <view class="title">我们倒着走向未来</view>
   <view class="top_tip">透过后视镜</view>
   <view class="power" wx:key="title" wx:for="{{powerList}}" wx:for-item="power">

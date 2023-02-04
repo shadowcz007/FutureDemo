@@ -1,17 +1,25 @@
 /**index.wxss**/
- 
+page {
+  background: #191919;
+  color: white;
+}
+
 .container {
-  padding-top: 98px;
-  background-color: #f6f6f6;
-  padding-bottom: 44rpx;
+  padding-top: 3rem;
+}
+
+.logo {
+  /* background-color: black; */
+  height: 4rem;
 }
 
 .title {
   font-family: PingFang SC;
   font-weight: 500;
-  color: #000000;
+  color: #ffffff;
   font-size: 44rpx;
   margin-bottom: 40rpx;
+  margin-top: 2rem;
 }
 
 .top_tip {
@@ -58,6 +66,7 @@
   margin-bottom: 10rpx;
   font-weight: 400;
   font-size: 35rpx;
+  color: black;
 }
 
 .power_info_text_tip {
@@ -73,6 +82,8 @@
 
 .power_item_title {
   font-size: 30rpx;
+  color: black;
+  font-weight: 800;
 }
 
 .power_item_icon {
