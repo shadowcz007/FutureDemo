@@ -7,7 +7,7 @@
 
 .blur {
   backdrop-filter: blur(10px);
-  background: rgba(0,0,0,.45);
+  background: rgba(0, 0, 0, .45);
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -30,11 +30,12 @@
   animation: rotatearound 98s linear infinite;
   box-shadow: 0 0 4px 0 rgba(255, 255, 255, 0.5) linear-gradient(to bottom, #f00, #fcc, #00f);
   background-color: black;
+  margin-top: 72px;
 }
 
 .header .title {
-  font-size: 20px;
-  font-weight: 300;
+  font-size: 26px;
+  font-weight: 800;
   color: #ffffff;
   line-height: 18px;
 }
@@ -44,7 +45,6 @@
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
-  margin-top: 32px;
 }
 
 
@@ -82,4 +82,16 @@ button {
   padding: 12px;
   margin: 2px 0;
   min-width: 80%;
+}
+
+.q {
+  background-color: #8eca8e;
+  color: #3a2c2c;
+  font-size: 22px;
+}
+
+.a {
+  background-color: transparent;
+  color: white;
+  border: 1px solid #8eca8e;
 }

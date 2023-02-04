@@ -230,7 +230,8 @@ Page({
       })
     } else if (this.data.pages.length == index) {
       // 出答案
-      let selections=Array.from(this.data.selections,s=>s.result?s.result:null).filter(r=>r).join('')
+      let selections=Array.from(this.data.selections,s=>s.result?s.result:null).filter(r=>r).join('');
+      console.log('selections',this.data.selections)
       let res = this.matchAnwser(selections, Object.keys(this.data.answersJson));
       let result4 = [];
       for (const r of res.slice(0, 4)) {
@@ -247,16 +248,19 @@ Page({
       let bMatchNum = 0;
       for (let i = 0; i < a.length; i++) {
         if (a[i] === targetStr[i]) {
-          aMatchNum += i < 3 ? 2 : 1;
+          // aMatchNum += i < 3 ? 2 : 1;
+          aMatchNum +=1;
         }
         if (b[i] === targetStr[i]) {
-          bMatchNum += i < 3 ? 2 : 1;
+          // bMatchNum += i < 3 ? 2 : 1;
+          bMatchNum += 1;
         }
       }
       // console.log(`${a}:${aMatchNum}   ${b}:${bMatchNum}`);
       return bMatchNum - aMatchNum;
     });
     // console.log(arr);
+    console.log('matchAnwser',targetStr,arr,na)
     return na
   },
   jumpPage() {

@@ -1,6 +1,10 @@
 <!--index.wxml-->
 <view class="container">
-<image class="logo" src="{{appLogo}}" mode="aspectFit" bindtap="jumpVideoChannel"></image>
+  <view>
+    <image class="logo" src="{{appLogo}}" mode="aspectFit" bindtap="jumpVideoChannel">
+    </image>
+    
+  </view>
   <view class="title">我们倒着走向未来</view>
   <view class="top_tip">透过后视镜</view>
   <view class="power" wx:key="title" wx:for="{{powerList}}" wx:for-item="power">
@@ -15,22 +19,15 @@
     <view wx:if="{{power.showItem}}">
       <view wx:key="title" wx:for="{{power.items}}">
         <view class="line"></view>
-        <view class="power_item" bindtap="jumpPage" 
-        data-page="{{item.page}}"
-        data-collection="{{item.collection}}"
-        data-background="{{item.background}}"
-        data-data="{{item.data}}"
-        >
+        <view class="power_item" bindtap="jumpPage" data-page="{{item.page}}" data-collection="{{item.collection}}" data-background="{{item.background}}" data-data="{{item.data}}">
           <view class="power_item_title">{{item.collection}}
             <view class="power_info_text_tip">{{item.desciption}}</view>
           </view>
-          
+
           <image class="power_item_icon" src="../../images/arrow.svg"></image>
         </view>
       </view>
     </view>
   </view>
-
-  <!-- 用来切换服务器？<view class="environment" bindtap="onChangeShowEnvChoose">当前环境 {{ selectedEnv.alias }}</view> -->
 
 </view>

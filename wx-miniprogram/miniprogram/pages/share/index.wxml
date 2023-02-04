@@ -1,4 +1,5 @@
-<view class="bg_contain" style='background-image: url({{background}})'>
+<view class="bg_contain" >
+  <image mode="aspectFill" src="{{background}}" class="bg" />
   <view class='blur'>
   <view class="header">
     <button bindtap="goHome" style="color: white;margin-left: 0;width: 98px;margin-top: 32px;">返回首页</button>
@@ -9,9 +10,11 @@
     <image mode="aspectFill" src="{{avatar}}" />
     <text>{{result.description}}</text>
     <view class="btn-block">
-      <button type="button" data-value='喜欢' data-title="{{result.title}}" bindtap="like">喜欢</button>
-      <button type="button" data-value='不喜欢' data-title="{{result.title}}" bindtap="unlike">不喜欢</button>
-    </view>
+      <button wx:if="{{!share}}" type="button" data-value='喜欢' data-title="{{result.title}}" bindtap="like">喜欢</button>
+      <button wx:if="{{!share}}" type="button" data-value='不喜欢' data-title="{{result.title}}" bindtap="unlike">不喜欢</button>
+      <button wx:if="{{share}}" type="button" bindtap="goHome">立马测一测</button>
+    </view> 
+    
   </view>
   </view>
 </view>

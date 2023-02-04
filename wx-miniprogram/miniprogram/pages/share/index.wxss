@@ -1,16 +1,21 @@
 /* pages/share.wxss */
 .bg_contain {
-  /* background-image: url('./image_demo.jpg'); */
   height: 100vh;
   background-size: cover;
-  background-color: black;
+  /* background-color: black; */
 }
-
+.bg{
+  position: fixed;
+  z-index: -1;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
 .blur {
   backdrop-filter: blur(10px);
   background: rgba(0,0,0,.45);
   height: 100vh;
-  
 }
 
 .header {

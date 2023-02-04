@@ -13,8 +13,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    const { envId, collection, title, description } = options;
-    // console.log(options)
+    const { envId, collection, title, description,share } = options;
+    console.log('share',share)
     var value = [];
     if (title && description) {
       value = [{
@@ -30,7 +30,7 @@ Page({
       index: 0,
       result: value[0],
       data: value,
-      envId, collection
+      envId, collection,share:!!share
     })
   },
   next() {
@@ -141,7 +141,7 @@ Page({
       setTimeout(() => {
         resolve({
           title: '我的职业:' + this.data.result.title,
-          path: `/pages/share/index?title=${this.data.result.title}&description=${this.data.result.description}&envId=${this.data.envId}&collection=${this.data.collection}`
+          path: `/pages/share/index?title=${this.data.result.title}&description=${this.data.result.description}&envId=${this.data.envId}&collection=${this.data.collection}&share=true`
         })
       }, 200)
     })

@@ -59,6 +59,7 @@ Page({
     });
   },
   onLoad() {
+    console.log('openChannelsUserProfile', wx.canIUse('openChannelsUserProfile'))
     wx.showLoading({
       title: '',
     })
@@ -105,16 +106,34 @@ Page({
     }
   },
   jumpVideoChannel() {
-    try {
-      wx.openChannelsUserProfile({
-        finderUserName: 'sphyFKjtwe0EVXk'
-      })
-    } catch (error) {
-      wx.showModal({
-        title: '提示',
-        content: '关注视频号：shadow.mixlab'
-      })
-    }
-
+    console.log('jumpVideoChannel')
+    // if (wx.canIUse('openChannelsUserProfile')) {
+    //   wx.openChannelsUserProfile({
+    //     finderUserName: 'sphyFKjtwe0EVXk',
+    //     success: console.log,
+    //     fail: () => {
+    //       this.showModal()
+    //     },
+    //     complete: console.log
+    //   })
+    // } else {
+    //   this.showModal()
+    // }
+    wx.openChannelsActivity({
+      finderUserName:'sphyFKjtwe0EVXk',
+      feedId:'export/UzFfAgtgekIEAQAAAAAAT9IhpY_jggAAAAstQy6ubaLX4KHWvLEZgBPEjqM0GlZQDuOAzNPgMJqHL62yrvLGakY_Ut-CmrfQ'
+    })
+  },
+  showModal() {
+    wx.setClipboardData({
+      data: 'shadow.mixlab',
+      success(res) {
+        wx.showModal({
+          title: '提示',
+          content: '关注视频号：shadow.mixlab',
+          showCancel:false
+        })
+      }
+    })
   }
 });
