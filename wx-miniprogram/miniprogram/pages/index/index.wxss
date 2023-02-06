@@ -40,7 +40,7 @@ page {
 
 .power_info {
   display: flex;
-  padding: 30rpx 25rpx;
+  padding: 28rpx 25rpx;
   align-items: center;
   justify-content: space-between;
 }
@@ -60,6 +60,18 @@ page {
 .power_info_text {
   display: flex;
   flex-direction: column;
+}
+
+.power_info_text_tag {
+  background: #FFEB3B;
+  color: #191919;
+  display: flex;
+  width: fit-content;
+  padding: 2px 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  font-weight: 300;
+  margin: 4px 0px;
 }
 
 .power_info_text_title {

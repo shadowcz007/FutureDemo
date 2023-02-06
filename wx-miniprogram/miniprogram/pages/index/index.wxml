@@ -3,13 +3,14 @@
   <view>
     <image class="logo" src="{{appLogo}}" mode="aspectFit" bindtap="jumpVideoChannel">
     </image>
-    
+
   </view>
   <view class="title">我们倒着走向未来</view>
   <view class="top_tip">透过后视镜</view>
   <view class="power" wx:key="title" wx:for="{{powerList}}" wx:for-item="power">
     <view class="power_info" data-index="{{index}}" bindtap="onClickPowerInfo">
       <view class="power_info_text">
+        <view class="power_info_text_tag">测一测</view>
         <view class="power_info_text_title">{{power.title}}</view>
         <view class="power_info_text_tip">{{power.tip}}</view>
       </view>
@@ -23,7 +24,6 @@
           <view class="power_item_title">{{item.collection}}
             <view class="power_info_text_tip">{{item.desciption}}</view>
           </view>
-
           <image class="power_item_icon" src="../../images/arrow.svg"></image>
         </view>
       </view>
