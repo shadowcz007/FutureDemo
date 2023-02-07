@@ -42,8 +42,8 @@
   overflow: hidden;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   align-items: center;
-  justify-content: space-around;
-  height: 80vh;
+  /* justify-content: space-around; */
+  padding-bottom:56px;
 }
 
 .profile-card text {

@@ -13,12 +13,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    const { envId, collection, title, description,share } = options;
-    console.log('share',share)
+    const {
+      envId,
+      collection,
+      title,
+      description,
+      share
+    } = options;
+    console.log('share', options)
     var value = [];
     if (title && description) {
       value = [{
-        title, description
+        title,
+        description
       }];
       wx.clearStorageSync('selections');
 
@@ -26,46 +33,89 @@ Page({
       value = wx.getStorageSync('result');
     };
     console.log(value)
-    this.setData({
-      index: 0,
-      result: value[0],
-      data: value,
-      envId, collection,share:!!share
-    })
+    // value=null
+    if(value){
+      this.setData({
+        index: 0,
+        result: value[0],
+        data: value,
+        envId,
+        collection,
+        share: !!share
+      })
+    }else{
+      this.setData({share:true})
+    }
+
   },
   next() {
     try {
-      let index=this.data.index;
+      let index = this.data.index;
       index++;
       let res = this.data.data[index];
       if (res) {
         this.setData({
-          result: res,index
+          result: res,
+          index
         })
-      }else{
+      } else {
         this.setData({
-          index:0,
-          result: this.data.data[0]})
+          index: 0,
+          result: this.data.data[0]
+        })
       }
     } catch (error) {
       this.setData({
-        index:0,
-        result: this.data.data[0]})
+        index: 0,
+        result: this.data.data[0]
+      })
     }
     // console.log(this.data)
   },
   like(param) {
     const {
-      title, value
+      title,
+      value
     } = param.currentTarget.dataset;
-    let selections=wx.getStorageSync('selections')||[];
+    let selections = wx.getStorageSync('selections') || [];
     console.log(selections)
-    this.postData([...selections,{ 
-      type:'like',
-      question:title, answer:value, createDate: new Date() }].filter(r=>r))
+    if(this.data.clickedLike) return
+    this.setData({
+      clickedLike: true
+    })
+    this.postData([...selections, {
+      type: 'like',
+      question: title,
+      answer: value,
+      createDate: new Date()
+    }].filter(r => r))
+    this.jumpVideoChannel()
   },
   unlike() {
     this.next();
+    this.setData({
+      clickedLike: false
+    })
+  },
+  jumpVideoChannel() {
+    console.log('jumpVideoChannel')
+    let {
+      finderUserName,
+      feedId
+    } = this.data.result;
+    if (finderUserName && feedId) {
+      wx.openChannelsActivity({
+        finderUserName,
+        feedId
+      })
+    } else {
+      wx.showToast({
+        title: '欢迎分享❤',
+        icon: 'success',
+        duration: 2000
+      })
+    }
+
   },
   goHome() {
     wx.navigateTo({
@@ -132,11 +182,7 @@ Page({
   onReachBottom() {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
+  sharePage(){
     const promise = new Promise(resolve => {
       setTimeout(() => {
         resolve({
@@ -150,5 +196,14 @@ Page({
       path: '/pages/index/index',
       promise
     }
+  },
+  onShareTimeline(){
+    this.sharePage()
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
+    this.sharePage()
   }
 })

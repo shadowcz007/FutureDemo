@@ -58,8 +58,9 @@ Page({
       url: `/pages/${e.currentTarget.dataset.page}/index?envId=${this.data.selectedEnv.envId}&collection=${e.currentTarget.dataset.collection}`,
     });
   },
-  onLoad() {
+  onLoad(opts) {
     console.log('openChannelsUserProfile', wx.canIUse('openChannelsUserProfile'))
+    console.log(opts)
     wx.showLoading({
       title: '',
     })
@@ -95,7 +96,7 @@ Page({
           powerList
         });
       }).catch((e) => {
-        // wx.hideLoading();
+        wx.hideLoading();
         console.log(e)
       });
     } else {
@@ -119,9 +120,25 @@ Page({
     // } else {
     //   this.showModal()
     // }
+
+    let powerList=this.data.powerList;
+
+    let feeds={};
+    for (const p of powerList) {
+      for (const item of p.items) {
+        for (const an of item.data.answersData) {
+          if(an.feedId&&an.finderUserName) feeds[an.feedId+an.finderUserName]={
+            feedId:an.feedId,
+            finderUserName:an.finderUserName
+          }
+        }
+      }
+    };
+    feeds=Object.values(feeds);
+    let feed=feeds[Math.floor(Math.random() *feeds.length)]
     wx.openChannelsActivity({
-      finderUserName:'sphyFKjtwe0EVXk',
-      feedId:'export/UzFfAgtgekIEAQAAAAAAT9IhpY_jggAAAAstQy6ubaLX4KHWvLEZgBPEjqM0GlZQDuOAzNPgMJqHL62yrvLGakY_Ut-CmrfQ'
+      finderUserName:feed.finderUserName,
+      feedId:feed.feedId
     })
   },
   showModal() {
@@ -135,5 +152,19 @@ Page({
         })
       }
     })
+  },
+  onShareTimeline(){
+    return {
+      title: '我们倒着走向未来'
+    }
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
+    return {
+      title: '快试试FutureDEMO',
+      path: '/pages/index/index'
+    }
   }
 });

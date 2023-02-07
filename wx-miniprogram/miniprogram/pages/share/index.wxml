@@ -5,13 +5,21 @@
     <button bindtap="goHome" style="color: white;margin-left: 0;width: 98px;margin-top: 32px;">返回首页</button>
   </view>
   <view class="profile-card">
+   <view style="display: flex;flex-direction: column;justify-content: center;align-items: center;height: 300px;">
     <text style="font-weight: 300;padding: 8px;">适合你的未来职业</text>
     <text style="font-size: 24px;padding: 4px;">{{result.title}}</text>
     <image mode="aspectFill" src="{{avatar}}" />
+    </view>
     <text>{{result.description}}</text>
     <view class="btn-block">
-      <button wx:if="{{!share}}" type="button" data-value='喜欢' data-title="{{result.title}}" bindtap="like">喜欢</button>
-      <button wx:if="{{!share}}" type="button" data-value='不喜欢' data-title="{{result.title}}" bindtap="unlike">不喜欢</button>
+      <button 
+      style="background: {{clickedLike?'darkturquoise':'#046e7b'}};border-right: {{result.finderUserName && result.feedId?'2px solid #FFC107':''}};display: {{result.title && result.description?'block':'none'}};"
+      wx:if="{{!share}}" type="button" data-value='喜欢' data-title="{{result.title}}" bindtap="like">喜欢</button>
+      <button 
+      style="display: {{result.title && result.description?'block':'none'}};"
+      wx:if="{{!share}}" type="button" data-value='不喜欢' 
+      data-title="{{result.title}}" 
+      bindtap="unlike">不喜欢</button>
       <button wx:if="{{share}}" type="button" bindtap="goHome">立马测一测</button>
     </view> 
     
