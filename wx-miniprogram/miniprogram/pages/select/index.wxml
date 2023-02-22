@@ -15,7 +15,9 @@
         <view style="padding: 10px;">
           <button class="{{isStart?'a':'q'}}" bindtap='handleClick' data-answer="{{item}}" 
           data-question="{{isStart?page.question:home.question}}" 
-          data-nextindex="{{isStart?(page.index+1):0}}"
+          data-choices2id="{{(isStart?page.choices2Id:home.choices2Id)||[]}}"
+          data-index="{{index}}"
+          data-id="{{isStart?page.id:home.id}}"
           data-result="{{isStart?result[index]:''}}"
           >{{item}}</button>
         </view>

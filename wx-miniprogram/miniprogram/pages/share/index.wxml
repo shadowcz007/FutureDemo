@@ -6,7 +6,7 @@
   </view>
   <view class="profile-card">
    <view style="display: flex;flex-direction: column;justify-content: center;align-items: center;height: 300px;">
-    <text style="font-weight: 300;padding: 8px;">适合你的未来职业</text>
+    <text style="font-weight: 300;padding: 8px;">***</text>
     <text style="font-size: 24px;padding: 4px;">{{result.title}}</text>
     <image mode="aspectFill" src="{{avatar}}" />
     </view>

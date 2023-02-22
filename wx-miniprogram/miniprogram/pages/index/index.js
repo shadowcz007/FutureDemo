@@ -69,7 +69,7 @@ Page({
     let powerList = [];
     if (indexData) {
       goToPost = indexData.createDate != (new Date()).getDate();
-      powerList = indexData.powerList;
+      powerList = indexData.powerList.filter(p=>!p.dev);;
     } else {
       goToPost = true;
     };
@@ -87,7 +87,7 @@ Page({
       }).then((resp) => {
         wx.hideLoading();
         console.log(resp)
-        powerList = resp.result.data.data;
+        powerList = resp.result.data.data.filter(p=>!p.dev);
         wx.setStorageSync('index', {
           powerList,
           createDate: (new Date()).getDate()
