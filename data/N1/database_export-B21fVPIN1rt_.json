@@ -222,14 +222,36 @@
                         "AI-base是什么？"
                     ],
                     "id": 0,
-                    "choices2Id": [],
+                    "choices2Id": [
+                        1,
+                        2
+                    ],
                     "quotations": [{
                         "name": "Mark Zuckerberg",
                         "text": "设计师和工程师合作，才能创造出更优秀的乐趣。"
                     }]
                 },
-                "pages": [],
-                "avatar": "cloud://cloud1-0gjd6xw51cb6648d.636c-cloud1-0gjd6xw51cb6648d-1255361869/N1/avatar.jpeg",
+                "pages": [{
+                        "choices": [
+                            "动画、影像",
+                            "创意图片",
+                            "商品包装",
+                            "自媒体配图等"
+                        ],
+                        "question": "你主要创作什么样的内容？",
+                        "id": 1,
+                        "choices2Id": []
+                    },
+                    {
+                        "choices": [
+                            "知道了"
+                        ],
+                        "question": "人工智能驱动的生产力工具呀！",
+                        "id": 2,
+                        "choices2Id": []
+                    }
+                ],
+                "avatar": "cloud://cloud1-0gjd6xw51cb6648d.636c-cloud1-0gjd6xw51cb6648d-1255361869/N2/00031-3940754176.png",
                 "background": "cloud://cloud1-0gjd6xw51cb6648d.636c-cloud1-0gjd6xw51cb6648d-1255361869/N1/background.jpeg"
             },
             "desciption": "AI-base的工作流",

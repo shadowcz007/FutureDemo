@@ -39,7 +39,8 @@ Page({
         result,
         answer,
         question,
-        createDate: new Date()
+        createDate: new Date(),
+        id
       };
       this.setData({
         selections,
@@ -195,8 +196,17 @@ Page({
     } else {
       // 出答案
       console.log('出答案',this.data.selections)
-      let selections = Array.from(this.data.selections, s => s&&s.result ? s.result : null).filter(r => r).join('');
-      console.log('selections', this.data.selections)
+      let selections=[];
+      // 显示的题目答案统计
+      for (const sd of this.data.selections) {
+        selections[sd.id]=sd&&sd.result ? sd.result : '*'
+      }
+      // 剩下的没有显示的题目补全
+      for (const page of this.data.pages) {
+        if(selections[page.id]==undefined) selections[page.id]='*'
+      }
+      selections = selections.filter(r => r).join('');
+      console.log('selections', this.data.selections,selections)
       let res = this.matchAnwser(selections, Object.keys(this.data.answersJson));
       let result4 = [];
       for (const r of res.slice(0, 4)) {
@@ -208,6 +218,7 @@ Page({
     }
   },
   matchAnwser(targetStr = '', arr = []) {
+    // TODO 更好得匹配答案，输入 '*B*' ，arr 候选 'ACB','CBB'
     let na = arr.sort((a, b) => {
       let aMatchNum = 0;
       let bMatchNum = 0;

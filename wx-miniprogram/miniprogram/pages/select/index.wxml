@@ -5,7 +5,7 @@
       <view class="header">
         <text class="title">
           {{isStart?'# - /':home.title}}</text>
-        <image src="{{avatar}}" mode="center" />
+        <image src="{{avatar}}" mode="aspectFit" />
           <view style="padding: 10px;width: 100%;">
             <button class="{{isStart?'q':'a'}}">{{isStart?page.question:home.question}}</button>
           </view>
