@@ -244,5 +244,16 @@ Page({
       url: `/pages/share/index?envId=${this.data.envId}&collection=${this.data.collection}`,
     });
   },
-
+  initAudio(){
+    const innerAudioContext = wx.createInnerAudioContext({
+      useWebAudioImplement: false // 是否使用 WebAudio 作为底层音频驱动，默认关闭。对于短音频、播放频繁的音频建议开启此选项，开启后将获得更优的性能表现。由于开启此选项后也会带来一定的内存增长，因此对于长音频建议关闭此选项
+    })
+    innerAudioContext.src = 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E061FF02C31F716658E5C81F5594D561F2E88B854E81CAAB7806D5E4F103E55D33C16F3FAC506D1AB172DE8600B37E43FAD&fromtag=46'
+    
+    innerAudioContext.play() // 播放
+    
+    innerAudioContext.pause() // 暂停
+    
+    innerAudioContext.stop() // 停止
+  }
 });
